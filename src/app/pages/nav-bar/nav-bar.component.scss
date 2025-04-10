@@ -1,0 +1,47 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1f2039;
+    padding: .25rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    @media screen and (max-width: 767px) {
+        flex-direction: column;
+    }
+    &__logo {
+        font-size: 1.8rem;
+        color: #fff
+    }
+    &__list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        list-style: none;
+        @media screen and (max-width: 767px) {
+            gap: 15px;
+            border: 1px solid #d3d3d3;
+            border-radius: .2rem;
+            padding: .25rem;
+        }
+    }
+    &__item {
+        margin-right: 1rem;
+        @media screen and (max-width: 767px) {
+            margin-right: 0;
+        }
+    }
+    &__link {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            color: rgba(204, 204, 233, 0.5);
+        }
+        &--active {
+            color: rgba(204, 204, 233, 0.5);
+        }
+    }
+
+}

@@ -1,1 +1,24 @@
-<p>about works!</p>
+<div class="about">
+    <h1 class="about__title">A propos</h1>
+
+    <div class="about__introduction">
+
+        <p class="about__text">
+            Je suis Fayssoil Said, développeur web front-end originaire des Comores, diplômé en Sciences Mathématiques et Informatiques à la Faculté des Sciences de Meknès.
+            Depuis deux ans, je me forme avec rigueur et passion au développement web, en me concentrant sur les technologies du front-end, notamment HTML, CSS, JavaScript et Angular.
+            Curieux, motivé et autodidacte, je cherche aujourd’hui à intégrer une entreprise ou une équipe pour contribuer à des projets concrets et continuer à évoluer dans ce domaine dynamique.
+        </p>
+
+    </div>
+
+    <div class="about__skills">
+
+        <h2 class="about__skillsTitle">Compétences</h2>
+
+        <div class="about__skillsContent">
+            <app-skill *ngFor="let skill of skills" [skill]="skill" ></app-skill>
+        </div>
+
+    </div>
+    
+</div>

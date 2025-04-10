@@ -1,0 +1,38 @@
+.skillCard {
+    border: 1px solid #d3d3d3;
+    padding: .20rem;
+    background-color: #f2f2f2;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 0.5rem;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    &__logo {
+        grid-column: 1/2;
+        width: 100%;
+        height: auto;
+        color: #000;
+        background-color: #000;
+    }
+    &__title {
+        grid-column: 2/3;
+        font-weight: bold;
+    }
+    &__progressBar {
+        grid-column: 3/13;
+        background-color: #fff;
+        border-radius: 50px;
+        overflow: hidden;
+        height: 20px;
+    }
+    &__progress {
+        border-radius: 50px 0 0 50px;
+        background-color: aqua;
+        height: 100%;
+        text-align: center;
+        color: #3f51b5;
+        font-size: 0.8rem;
+        font-weight: bold;
+        line-height: 20px;
+    }
+}

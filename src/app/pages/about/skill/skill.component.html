@@ -1,0 +1,11 @@
+<div class="skillCard">
+
+    <img class="skillCard__logo" [src]="skill.logo?.logoUrl" [alt]="skill.logo?.logoName"/>
+
+    <h5 class="skillCard__title"> {{skill.name}} </h5>
+
+    <div class="skillCard__progressBar">
+        <div class="skillCard__progress" [ngStyle]="{ width: skill.percent_of_progress+'%'}"> {{skill.percent_of_progress}}% </div>
+    </div>
+
+</div>
