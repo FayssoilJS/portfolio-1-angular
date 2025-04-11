@@ -6,10 +6,77 @@
 
         <form class="contact__form">
 
-            <input type="text" class="contact__control" placeholder="Full name">
-            <input type="text" class="contact__control" placeholder="E-mail">
-            <input type="text" class="contact__control" placeholder="Subject">
-            <textarea class="contact__control--textarea" placeholder="Message"></textarea>
+            <div class="contact__field contact__field--fullName">
+                <input 
+                type="text" 
+                class="contact__control" 
+                name="full_name" 
+                #full_name="ngModel" 
+                [(ngModel)]="formData.full_name" 
+                placeholder="Full name"
+                required
+                minlength="3"
+                >
+
+                <span *ngIf="full_name.invalid && full_name.touched" class="error">
+                    {{full_name.errors?.['required'] ? 'Le nom obligatoire' : 'Minimum 3 caratères'}}
+                </span>
+            </div>
+            
+            <div class="contact__field contact__field--email">
+                <input 
+                type="text" 
+                class="contact__control"
+                name="replay_to"
+                [(ngModel)]="formData.replay_to"
+                #replay_to="ngModel"
+                placeholder="E-mail"
+                required
+                email
+                >
+
+                <span *ngIf="replay_to.invalid && replay_to.touched" class="error">
+                    {{replay_to.errors?.['required'] ? 'Email obligatoire' : 'Email invalid'}}
+                </span>
+            </div>
+            
+            <div class="contact__field contact__field--subject">
+                <input 
+                type="text" 
+                class="contact__control"
+                name="subject"
+                [(ngModel)]="formData.subject" 
+                #subject="ngModel"
+                placeholder="Subject"
+                required
+                minlength="3"
+                >
+
+                <span *ngIf="subject.invalid && subject.touched" class="error">
+                    {{subject.errors?.['required'] ? 'Le sujet obligatoire' : 'Minimum 3 caratères'}}
+                </span>
+            </div>
+            
+            <div class="contact__field contact__field--message">
+                <textarea 
+                class="contact__control"
+                name="message"
+                [(ngModel)]="formData.message"
+                #message="ngModel" 
+                placeholder="Message"
+                required
+                minlength="10"
+                ></textarea>
+
+                <span *ngIf="message.invalid && message.touched" class="error">
+                    {{message.errors?.['required'] ? 'Le message obligatoire' : 'Minimum 10 caratères'}}
+                </span>
+            </div>
+
+            <pre>
+                ------
+                {{formData | json}}
+            </pre>
 
         </form>
     
