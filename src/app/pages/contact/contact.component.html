@@ -4,39 +4,36 @@
 
     <div class="contact__message">
 
-        <form class="contact__form">
+        <form class="contact__form" novalidate>
 
             <div class="contact__field contact__field--fullName">
                 <input 
                 type="text" 
                 class="contact__control" 
-                name="full_name" 
-                #full_name="ngModel" 
+                name="full_name"  
                 [(ngModel)]="formData.full_name" 
                 placeholder="Full name"
-                required
-                minlength="3"
+                (change)="onValidName()"
                 >
 
-                <span *ngIf="full_name.invalid && full_name.touched" class="error">
-                    {{full_name.errors?.['required'] ? 'Le nom obligatoire' : 'Minimum 3 caratères'}}
+                <span *ngIf="!isFullNameValid" class="error">
+                    {{errorNameMessage}}
                 </span>
+
             </div>
             
             <div class="contact__field contact__field--email">
                 <input 
-                type="text" 
+                type="email" 
                 class="contact__control"
                 name="replay_to"
                 [(ngModel)]="formData.replay_to"
-                #replay_to="ngModel"
+                (change)="onValidEmail()"
                 placeholder="E-mail"
-                required
-                email
                 >
 
-                <span *ngIf="replay_to.invalid && replay_to.touched" class="error">
-                    {{replay_to.errors?.['required'] ? 'Email obligatoire' : 'Email invalid'}}
+                <span *ngIf="!isEmailValid" class="error">
+                    {{errorEmailMessage}}
                 </span>
             </div>
             
@@ -46,14 +43,12 @@
                 class="contact__control"
                 name="subject"
                 [(ngModel)]="formData.subject" 
-                #subject="ngModel"
+                (change)="onValidSubject()"
                 placeholder="Subject"
-                required
-                minlength="3"
                 >
 
-                <span *ngIf="subject.invalid && subject.touched" class="error">
-                    {{subject.errors?.['required'] ? 'Le sujet obligatoire' : 'Minimum 3 caratères'}}
+                <span *ngIf="!isSubjectValid" class="error">
+                    {{errorSubjectMessage}}
                 </span>
             </div>
             
@@ -62,26 +57,46 @@
                 class="contact__control"
                 name="message"
                 [(ngModel)]="formData.message"
-                #message="ngModel" 
+                (change)="onValidMessage()"
                 placeholder="Message"
-                required
-                minlength="10"
                 ></textarea>
 
-                <span *ngIf="message.invalid && message.touched" class="error">
-                    {{message.errors?.['required'] ? 'Le message obligatoire' : 'Minimum 10 caratères'}}
+                <span *ngIf="!isMessageValid" class="error">
+                    {{errorMessageMessage}}
                 </span>
             </div>
 
-            <pre>
-                ------
-                {{formData | json}}
-            </pre>
-
         </form>
     
-        <button class="btn contact__btn--primary">Envoyer votre message</button>
+        <button class="btn contact__btn--primary" [disabled]="isLoading || !isFormDataValid()" (click)="onSendEmail()">Envoyer votre message</button>
 
     </div>
 
 </div>
+
+<!--Modale-->
+
+<div *ngIf="isSuccessModalVisible" class="modal modal__bg--light">
+
+    <div class="modal__success">
+
+        <h2>Message envoyé</h2>
+        <p>Merci pour votre message, je vous répondrai dès que possible.</p>
+        <button class="modal__btn" (click)="closeSuccessModal()">Ok</button>
+
+    </div>
+
+</div>
+
+<!--Loading-->
+<div *ngIf="isLoading" class="modal modal__bg--light">
+    <p class="modal__loading">Envoie en cours...</p>
+</div>
+
+<!--Error-->
+<div *ngIf="isError" class="modal">
+    <p class="modal__errorSend">Message non envoyé !</p>
+    
+</div>
+
+
